@@ -9,39 +9,8 @@ import { NoteService } from '../../services/note.service';
   selector: 'app-header',
   standalone: true,
   imports: [AddNoteModalComponent, CommonModule],
-  template: `
-    <header>
-      <button *ngIf="showBackButton" (click)="goBack()" class="back-button">Back</button>
-      <h1>Note Taker</h1>
-      <button (click)="openModal()">Add Note</button>
-    </header>
-  `,
-  styles: [`
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-      background-color: #3f51b5;
-      color: white;
-    }
-    .back-button {
-      background-color: #ff4081;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    button {
-      background-color: #ff4081;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-  `],
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
   @ViewChild('addNoteModal') addNoteModal!: AddNoteModalComponent;

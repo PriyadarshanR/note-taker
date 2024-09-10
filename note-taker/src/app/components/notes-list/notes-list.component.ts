@@ -10,33 +10,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-notes-list',
   standalone: true,
   imports: [RouterLink, CommonModule],
-  template: `
-    <div class="notes-list">
-      @if(notes$ | async; as notes){
-      @for(note of notes; track note.id){
-      <div  class="note-item" (click)="viewNote(note.id ?? 0)">
-        <h3>{{ note.title }}</h3>
-        <p>{{ note.content | slice: 0:100 }}...</p>
-      </div>
-      }
-      }
-    </div>
-  `,
-  styles: [`
-    .notes-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .note-item {
-      background-color: #cccccc;
-      padding: 1rem;
-      border-radius: 8px;
-      width: 100%;
-      max-width: 300px;
-      cursor: pointer;
-    }
-  `],
+  templateUrl: `./notes-list.component.html`,
+  styleUrl: './notes-list.component.scss',
 })
 export class NotesListComponent implements OnInit {
   notes$ !: Observable<Note[]>;

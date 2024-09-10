@@ -1,30 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NoteService } from '../../services/note.service';
+import { PrimaryActionDirective } from '../../directivs/primary-action.directive';
 
 @Component({
   selector: 'app-note-detail',
   standalone: true,
-  imports: [],
-  template: `
-  @if(note){
-    <div>
-      <h2>{{ note.title }}</h2>
-      <p>{{ note.content }}</p>
-      <button (click)="editNote()">Edit</button>
-      <button (click)="deleteNote()">Delete</button>
-    </div>
-    }
-  `,
-  styles: [`
-    div {
-      padding: 1rem;
-      background-color: #cccccc;
-    }
-    button {
-      margin-right: 0.5rem;
-    }
-  `],
+  imports: [PrimaryActionDirective],
+  templateUrl: `./note-detail.component.html`,
+  styleUrl: './note-detail.component.scss',
 })
 export class NoteDetailComponent implements OnInit {
   note: any;

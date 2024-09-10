@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NoteService } from '../../services/note.service';
-import { PrimaryActionDirective } from '../../directivs/primary-action.directive';
+import { PrimaryActionDirective } from '../../directives/primary-action.directive';
 
 @Component({
   selector: 'app-note-detail',

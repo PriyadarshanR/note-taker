@@ -4,7 +4,9 @@
     <h2>{{ isEdit ? "Update " : "Add " }}Note</h2>
     <input [(ngModel)]="note.title" placeholder="Title" />
     <textarea [(ngModel)]="note.content" placeholder="Content"></textarea>
-    <button (click)="saveNote()">{{ isEdit ? "Update " : "Save " }}</button>
+    <button appPrimaryAction (click)="saveNote()">
+      {{ isEdit ? "Update " : "Save " }}
+    </button>
     <button (click)="closeModal()">Cancel</button>
   </div>
 </div>

@@ -1,0 +1,10 @@
+<div class="modal-background" *ngIf="visible">
+  <div class="modal">
+    <h2>{{ header }}</h2>
+    <p><!-- To do --></p>
+    <button appPrimaryAction (click)="onPrimaryActionClick()">
+      {{ primaryAction }}
+    </button>
+    <button (click)="closeModal()">{{ secondaryAction }}</button>
+  </div>
+</div>

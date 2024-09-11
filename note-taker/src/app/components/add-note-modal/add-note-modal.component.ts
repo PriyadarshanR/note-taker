@@ -2,10 +2,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { NoteService } from '../../services/note.service';
 import { Note } from '../../models/note.model';  // Assuming you have a Note model
 import { FormsModule } from '@angular/forms';
+import { PrimaryActionDirective } from '../../directives/primary-action.directive';
 
 @Component({
   selector: 'app-add-note-modal',
-  imports: [FormsModule],
+  imports: [FormsModule, PrimaryActionDirective],
   templateUrl: './add-note-modal.component.html',
   styleUrl: './add-note-modal.conmponent.scss',
   standalone: true,

@@ -16,7 +16,7 @@ public class NoteController {
     private final NoteService noteService;
 
     // Get all notes
-    @GetMapping
+    @GetMapping("/getAll")
     public ResponseEntity<List<Note>> getAllNotes() {
         List<Note> notes = noteService.getAllNotes();
         return ResponseEntity.ok(notes); // Responds with HTTP 200 and the list of notes

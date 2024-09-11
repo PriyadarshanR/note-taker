@@ -2,13 +2,28 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-}
-.note-item {
-  background-color: #cccccc;
-  padding: 1rem;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 300px;
-  cursor: pointer;
-  margin: 6px;
+
+  .note-item {
+    background-color: #cccccc;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 300px;
+    cursor: pointer;
+    margin: 6px;
+    position: relative; // Add this to set the container as a reference for the absolute icon
+
+    .delete-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+    }
+
+    h3 {
+      margin-top: 0;
+    }
+  }
 }

@@ -1,4 +1,4 @@
-package com.note_taker.web.util;
+package com.note_taker.web.security;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;

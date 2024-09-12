@@ -23,8 +23,8 @@ public class NoteController {
     }
 
     // Get note by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<Note> getNoteById(@PathVariable Long id) {
+    @GetMapping
+    public ResponseEntity<Note> getNoteById(@RequestParam Long id) {
         Note note = noteService.getNoteById(id);
         return ResponseEntity.ok(note); // Responds with HTTP 200 and the note
     }
@@ -37,15 +37,15 @@ public class NoteController {
     }
 
     // Update an existing note
-    @PutMapping("/{id}")
-    public ResponseEntity<Note> updateNote(@PathVariable Long id, @RequestBody Note note) {
+    @PutMapping
+    public ResponseEntity<Note> updateNote(@RequestParam Long id, @RequestBody Note note) {
         Note updatedNote = noteService.updateNote(id, note);
         return ResponseEntity.ok(updatedNote); // Responds with HTTP 200 and the updated note
     }
 
     // Delete a note by ID
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteNote(@PathVariable Long id) {
+    @DeleteMapping
+    public ResponseEntity<Void> deleteNote(@RequestParam Long id) {
         noteService.deleteNote(id);
         return ResponseEntity.noContent().build(); // Responds with HTTP 204 No Content after deletion
     }

@@ -2,22 +2,11 @@
   @if(notes$ | async; as notes){ @for(note of notes; track note.id){
   <div class="note-item" (click)="viewNote(note.id ?? 0)">
     <h3>{{ note.title }}</h3>
-    <img
-      (click)="onCloseIconClick()"
-      class="delete-icon"
-      src="/assets/icons/icons8-cross-50.png"
-      alt="delete note"
-    />
+    <img (click)="onCloseIconClick()" class="delete-icon" src="/assets/icons/icons8-cross-50.png" alt="delete note" />
     <p>{{ note.content | slice : 0 : 100 }}...</p>
   </div>
   } }
 </div>
 
-<app-modal-dialog
-  [visible]="confirmDeleteModalVisible"
-  primaryAction="Delete"
-  secondaryAction="Cancel"
-  header="Delete Note"
-  (onActionClicked)="onUserAction($event)"
-  >Do you want to delete the note?</app-modal-dialog
->
+<app-modal-dialog [visible]="confirmDeleteModalVisible" primaryAction="Delete" secondaryAction="Cancel"
+  header="Delete Note" (onActionClicked)="onUserAction($event)">Do you want to delete the note?</app-modal-dialog>

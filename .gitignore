@@ -3,3 +3,4 @@ note-taker-service/.idea/*
 note-taker/.angular/cache/*
 note-taker/dist/*
 note-taker-service/target/*
+*.class

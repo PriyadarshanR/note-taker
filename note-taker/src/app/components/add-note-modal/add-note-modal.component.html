@@ -2,7 +2,7 @@
 <div class="modal-background">
   <div class="modal">
     <h2>{{ isEdit ? "Update " : "Add " }}Note</h2>
-    <input [(ngModel)]="note.title" placeholder="Title" />
+    <input [(ngModel)]="note.title" placeholder="Title" maxlength="30" />
     <textarea [(ngModel)]="note.content" placeholder="Content"></textarea>
     <button appPrimaryAction (click)="saveNote()">
       {{ isEdit ? "Update " : "Save " }}

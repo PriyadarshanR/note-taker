@@ -1,7 +1,7 @@
 @if(note){
 <div>
   <h2>{{ note.title }}</h2>
-  <p>{{ note.content }}</p>
+  <p style="white-space: pre-wrap;">{{ note.content }}</p>
   <button appPrimaryAction (click)="editNote()">Edit</button>
   <button (click)="deleteNote()">Delete</button>
 </div>

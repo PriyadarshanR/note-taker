@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NoteService } from '../../services/note.service';
 import { Note } from '../../models/note.model';  // Assuming you have a Note model
 import { FormsModule } from '@angular/forms';
@@ -11,14 +11,16 @@ import { PrimaryActionDirective } from '../../directives/primary-action.directiv
   styleUrl: './add-note-modal.conmponent.scss',
   standalone: true,
 })
-export class AddNoteModalComponent {
+export class AddNoteModalComponent implements OnInit {
   isVisible = false;
   note: Note = { title: '', content: '' };
   isEdit = false;
 
   @Output() noteAdded = new EventEmitter<void>();
 
-  constructor(private noteService: NoteService) {
+  constructor(private noteService: NoteService) { }
+
+  ngOnInit() {
     this.noteService.addEditModal.subscribe((res: Note | null) => {
       if (res) {
         this.note = res;
@@ -41,8 +43,8 @@ export class AddNoteModalComponent {
   }
 
   saveNote() {
-    this.noteService.createNote(this.note).subscribe(newNote => {
-      this.noteAdded.emit();
+    this.noteService.createNote(this.note).subscribe(() => {
+      this.noteService.noteListUpdated.next(true);
       this.closeModal();
     });
   }

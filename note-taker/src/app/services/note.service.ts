@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Note } from '../models/note.model';
 
 @Injectable({
@@ -9,7 +9,10 @@ import { Note } from '../models/note.model';
 export class NoteService {
   private apiUrl = 'http://localhost:8082/notes'; // Backend API
 
-  addEditModal: Subject<Note | null> = new Subject();
+  //Used for the Modal Dialog
+  //If NewNote or UpdateNote is to be performed
+  addEditModal = new Subject<Note | null>();
+  noteListUpdated = new BehaviorSubject(true);
 
   constructor(private http: HttpClient) { }
 

@@ -21,7 +21,10 @@ export class NotesListComponent implements OnInit {
   constructor(private noteService: NoteService, private router: Router) { }
 
   ngOnInit(): void {
-    this.notes$ = this.noteService.getAllNotes();
+    // noteListUpdated is a BehaviorSubject so this getAllNotes is initiated even at initialization of the component
+    this.noteService.noteListUpdated.subscribe(() => {
+      this.notes$ = this.noteService.getAllNotes();
+    })
   }
 
   viewNote(id: number) {

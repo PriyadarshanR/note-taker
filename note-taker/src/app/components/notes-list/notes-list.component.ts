@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Note } from '../../models/note.model';
 import { NoteService } from '../../services/note.service';
-import { Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ModalDialogComponent } from '../../modal-dialog/modal-dialog.component';
@@ -25,6 +25,12 @@ export class NotesListComponent implements OnInit {
     // noteListUpdated is a BehaviorSubject so this getAllNotes is initiated even at initialization of the component
     this.noteService.noteListUpdated.subscribe(() => {
       this.notes$ = this.noteService.getAllNotes();
+    })
+
+    this.noteService.searchByTitle.subscribe((searchString: String) => {
+      this.notes$ = this.notes$.pipe(map((notes: Note[]) => notes.filter((note: Note) =>
+        note.title.toLowerCase().includes(searchString.toLowerCase())
+      )))
     })
   }
 

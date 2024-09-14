@@ -6,6 +6,7 @@ import { filter } from 'rxjs';
 import { HeaderComponent } from './components/header/header.component';
 import { AddNoteModalComponent } from './components/add-note-modal/add-note-modal.component';
 import { Note } from './models/note.model';
+import { NoteService } from './services/note.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class AppComponent {
   showBackButton = false;
   @ViewChild('AddNoteModalComponent') modalRef !: AddNoteModalComponent
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private noteService: NoteService) {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(event => {
@@ -31,8 +32,7 @@ export class AppComponent {
       });
   }
 
-  onNoteAdded() {
-    //get the updated notes list
-    this.router.navigateByUrl('/notes');
+  searchTitle(searchString: string) {
+    this.noteService.searchByTitle.next(searchString)
   }
 }

@@ -14,6 +14,8 @@ export class NoteService {
   addEditModal = new Subject<Note | null>();
   noteListUpdated = new BehaviorSubject(true);
 
+  searchByTitle = new Subject<string>();
+
   constructor(private http: HttpClient) { }
 
   getAllNotes(): Observable<Note[]> {

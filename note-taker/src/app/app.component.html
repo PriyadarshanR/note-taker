@@ -1,8 +1,9 @@
-<header>
-  <app-header [showBackButton]="showBackButton"></app-header>
-</header>
-<app-add-note-modal
-  #addNoteModal
-  (noteAdded)="onNoteAdded()"
-></app-add-note-modal>
+<app-header [showBackButton]="showBackButton"></app-header>
+<app-add-note-modal #addNoteModal></app-add-note-modal>
+@if(!showBackButton){
+<div class="search-container">
+  <input class="search-box" type="text" placeholder="Search by title" #search />
+  <img (click)="searchTitle(search.value)" src="assets/icons/search.svg" alt="" width="20px" height="20px">
+</div>
+}
 <router-outlet />

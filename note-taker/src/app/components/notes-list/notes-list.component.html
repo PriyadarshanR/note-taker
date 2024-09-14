@@ -1,5 +1,5 @@
 <div class="notes-list">
-  @if(notes$ | async; as notes){ @for(note of notes; track note.id){
+  @if(filteredNotes$ | async; as notes){ @for(note of notes; track note.id){
   <div class="note-item" (click)="viewNote(note.id ?? 0)">
     <h3>{{ note.title }}</h3>
     <img (click)="onCloseIconClick($event, note.id)" class="delete-icon" src="assets/icons/cancel.jpg" alt="delete note"

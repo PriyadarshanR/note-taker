@@ -16,6 +16,7 @@ import { UserAction } from '../../models/model';
 })
 export class NotesListComponent implements OnInit {
   notes$ !: Observable<Note[]>;
+  filteredNotes$ !: Observable<Note[]>;
   noteIdClickedOn !: number;
   confirmDeleteModalVisible = false;
 
@@ -24,11 +25,11 @@ export class NotesListComponent implements OnInit {
   ngOnInit(): void {
     // noteListUpdated is a BehaviorSubject so this getAllNotes is initiated even at initialization of the component
     this.noteService.noteListUpdated.subscribe(() => {
-      this.notes$ = this.noteService.getAllNotes();
+      this.filteredNotes$ = this.notes$ = this.noteService.getAllNotes();
     })
 
     this.noteService.searchByTitle.subscribe((searchString: String) => {
-      this.notes$ = this.notes$.pipe(map((notes: Note[]) => notes.filter((note: Note) =>
+      this.filteredNotes$ = this.notes$.pipe(map((notes: Note[]) => notes.filter((note: Note) =>
         note.title.toLowerCase().includes(searchString.toLowerCase())
       )))
     })

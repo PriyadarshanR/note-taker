@@ -16,6 +16,7 @@ import { UserAction } from '../../models/model';
 })
 export class NotesListComponent implements OnInit {
   notes$ !: Observable<Note[]>;
+  noteIdClickedOn !: number;
   confirmDeleteModalVisible = false;
 
   constructor(private noteService: NoteService, private router: Router) { }
@@ -31,14 +32,18 @@ export class NotesListComponent implements OnInit {
     this.router.navigate(['/note/detail', id]);
   }
 
-  onCloseIconClick(event: Event) {
+  onCloseIconClick(event: Event, noteId: number = 0) {
     event.stopPropagation();
+    this.noteIdClickedOn = noteId;
     this.confirmDeleteModalVisible = true;
   }
 
   onUserAction(event: UserAction) {
     if (event == UserAction.Primary) {
-      //To Do
+      this.noteService.deleteNote(this.noteIdClickedOn).subscribe(() => {
+        this.noteService.noteListUpdated.next(true);
+        this.confirmDeleteModalVisible = false;
+      });
     } else {
       this.confirmDeleteModalVisible = false;
     }

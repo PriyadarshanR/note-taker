@@ -24,8 +24,8 @@ export class AppComponent {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(event => {
-        console.log(event.url)
-        if (event.url.includes('notes/'))
+        // console.log(event.url)
+        if (event.url.includes('note/detail'))
           this.showBackButton = true
         else this.showBackButton = false
       });

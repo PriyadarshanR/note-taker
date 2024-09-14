@@ -28,7 +28,8 @@ export class NotesListComponent implements OnInit {
     this.router.navigate(['/notes', id]);
   }
 
-  onCloseIconClick() {
+  onCloseIconClick(event: Event) {
+    event.stopPropagation();
     this.confirmDeleteModalVisible = true;
   }
 

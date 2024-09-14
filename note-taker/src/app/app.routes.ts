@@ -5,7 +5,7 @@ import { NoteDetailComponent } from './components/note-detail/note-detail.compon
 export const routes: Routes = [
     { path: '', redirectTo: 'notes', pathMatch: 'full' },
     { path: 'notes', component: NotesListComponent },
-    { path: 'notes/:id', component: NoteDetailComponent },
+    { path: 'note/detail/:id', component: NoteDetailComponent },
     { path: 'new-note', component: NoteDetailComponent },
     { path: '**', redirectTo: 'notes' },
 ];

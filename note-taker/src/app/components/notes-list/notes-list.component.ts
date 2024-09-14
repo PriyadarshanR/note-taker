@@ -28,7 +28,7 @@ export class NotesListComponent implements OnInit {
   }
 
   viewNote(id: number) {
-    this.router.navigate(['/notes', id]);
+    this.router.navigate(['/note/detail', id]);
   }
 
   onCloseIconClick(event: Event) {

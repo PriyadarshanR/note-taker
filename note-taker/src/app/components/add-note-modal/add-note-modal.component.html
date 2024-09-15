@@ -1,13 +1,39 @@
 @if(isVisible){
 <div class="modal-background">
   <div class="modal">
-    <h2>{{ isEdit ? "Update " : "Add " }}Note</h2>
-    <input [(ngModel)]="note.title" placeholder="Title" maxlength="30" />
-    <textarea [(ngModel)]="note.content" placeholder="Content"></textarea>
-    <button appPrimaryAction (click)="isEdit ? updateNote() : saveNote()">
-      {{ isEdit ? "Update " : "Save " }}
-    </button>
-    <button (click)="closeModal()">Cancel</button>
+    <div class="header">
+      <div class="heading">
+        <h2>{{ isEdit ? "Update " : "Add " }}Note
+        </h2>
+      </div>
+      <div class="edit-tags">
+        <button>
+          <img src="assets/icons/add-square.svg" alt="" height="25">
+          <span>{{ isEdit ? "Update " : "Add " }} category</span>
+        </button>
+      </div>
+    </div>
+    <div>
+      <form style="display: flex;">
+        <h3>Priority points</h3>
+        <div class="radio-group">
+          <label *ngFor="let point of [0, 1, 2, 3, 4]" style="margin-right: 10px;">{{ point+1 }}
+            <input type="radio" name="priority" [(ngModel)]="note.priority" [value]="priority[point]"
+              [checked]="priority[point] == note.priority" />
+          </label>
+        </div>
+      </form>
+    </div>
+    <div class="input">
+      <input [(ngModel)]="note.title" placeholder="Title" maxlength="30" />
+      <textarea [(ngModel)]="note.content" placeholder="Content"></textarea>
+    </div>
+    <div class="footer">
+      <button appPrimaryAction (click)="isEdit ? updateNote() : saveNote()">
+        {{ isEdit ? "Update " : "Save " }}
+      </button>
+      <button (click)="closeModal()">Cancel</button>
+    </div>
   </div>
 </div>
 }

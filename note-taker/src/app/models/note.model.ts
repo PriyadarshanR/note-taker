@@ -3,4 +3,12 @@ export interface Note {
     title: string;
     content: string;
     createdAt?: Date;
+    priority: 'LOW';
 }
+
+export const Priority = [
+    'LOW',
+    'MEDIUM',
+    'HIGH',
+    'VERY_HIGH',
+    'CRITICAL']

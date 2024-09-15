@@ -7,6 +7,12 @@
       <button (click)="deleteNote()">Delete</button>
     </div>
   </div>
+  <div class="priority-points">
+    <h3>Priority:</h3>
+    <span>
+      {{note.priority}}
+    </span>
+  </div>
   <p class="content">{{ note.content }}</p>
 </div>
 }

@@ -1,7 +1,7 @@
 package com.note_taker.web.entity;
 
+import com.note_taker.web.enums.Priority;
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,4 +20,7 @@ public class Note {
 
     @Column(length = 1000)
     private String content;
+
+    @Enumerated(EnumType.ORDINAL) // or EnumType.ORDINAL based on preference
+    private Priority priority;
 }

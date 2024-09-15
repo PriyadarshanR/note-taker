@@ -1,22 +1,25 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { NoteService } from '../../services/note.service';
-import { Note } from '../../models/note.model';  // Assuming you have a Note model
+import { Note, Priority } from '../../models/note.model';  // Assuming you have a Note model
 import { FormsModule } from '@angular/forms';
 import { PrimaryActionDirective } from '../../directives/primary-action.directive';
 import { Subject, takeUntil } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-note-modal',
-  imports: [FormsModule, PrimaryActionDirective],
+  imports: [FormsModule, PrimaryActionDirective, CommonModule],
   templateUrl: './add-note-modal.component.html',
   styleUrl: './add-note-modal.conmponent.scss',
   standalone: true,
 })
 export class AddNoteModalComponent implements OnInit, OnDestroy {
   isVisible = false;
-  note: Note = { id: 0, title: '', content: '' };
+  note !: Note;
   isEdit = false;
   destroySubject = new Subject<void>();
+  priority = Priority;
+
 
   constructor(private noteService: NoteService) { }
 
@@ -28,7 +31,7 @@ export class AddNoteModalComponent implements OnInit, OnDestroy {
       }
       else {
         this.isEdit = false;
-        this.note = { id: 0, title: '', content: '' };
+        this.note = { id: 0, title: '', content: '', priority: 'LOW' };
       }
       this.openModal();
     })

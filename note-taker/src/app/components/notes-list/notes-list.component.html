@@ -4,7 +4,11 @@
     <h3>{{ note.title }}</h3>
     <img (click)="onCloseIconClick($event, note.id)" class="delete-icon" src="assets/icons/cancel.jpg" alt="delete note"
       width="500" height="300" />
-    <p>{{ note.content | slice : 0 : 100 }}...</p>
+    <p>
+      {{ note.content | slice : 0 : 50 }}
+      <span *ngIf="note.content.length > 50">...</span>
+    </p>
+
   </div>
   } }
 </div>

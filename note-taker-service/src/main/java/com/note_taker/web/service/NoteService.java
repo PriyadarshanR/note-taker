@@ -18,7 +18,7 @@ public class NoteService {
 
     public List<Note> getAllNotes() {
         log.info("Fetching all notes");
-        return noteRepository.findAll();
+        return noteRepository.findAllByOrderByIdAsc();
     }
 
     public Note getNoteById(Long id) {

@@ -48,6 +48,14 @@ button {
 
 .radio-group {
   display: flex;
-  // flex-direction: column;
+  align-items: center;
+  label {
+    display: flex;
+    margin: 16px 10px 0 10px;
+  }
+}
+
+.p-form {
+  display: flex;
   align-items: center;
 }

@@ -14,10 +14,11 @@
       </div>
     </div>
     <div>
-      <form style="display: flex;">
+      <form class="p-form">
         <h3>Priority points</h3>
         <div class="radio-group">
-          <label *ngFor="let point of [0, 1, 2, 3, 4]" style="margin-right: 10px;">{{ point+1 }}
+          <label *ngFor="let point of [0, 1, 2, 3, 4]">{{
+            point+1 }}
             <input type="radio" name="priority" [(ngModel)]="note.priority" [value]="priority[point]"
               [checked]="priority[point] == note.priority" />
           </label>

@@ -30,21 +30,21 @@ public class NoteController {
     }
 
     // Create a new note
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity<Note> createNote(@RequestBody Note note) {
         Note createdNote = noteService.createNote(note);
         return ResponseEntity.ok(createdNote); // Responds with HTTP 200 and the created note
     }
 
     // Update an existing note
-    @PutMapping
+    @PutMapping("/update")
     public ResponseEntity<Note> updateNote(@RequestParam Long id, @RequestBody Note note) {
         Note updatedNote = noteService.updateNote(id, note);
         return ResponseEntity.ok(updatedNote); // Responds with HTTP 200 and the updated note
     }
 
     // Delete a note by ID
-    @DeleteMapping
+    @DeleteMapping("/delete")
     public ResponseEntity<Void> deleteNote(@RequestParam Long id) {
         noteService.deleteNote(id);
         return ResponseEntity.noContent().build(); // Responds with HTTP 204 No Content after deletion

@@ -14,7 +14,7 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class AddNoteModalComponent implements OnInit, OnDestroy {
   isVisible = false;
-  note: Note = { title: '', content: '' };
+  note: Note = { id: 0, title: '', content: '' };
   isEdit = false;
   destroySubject = new Subject<void>();
 
@@ -28,7 +28,7 @@ export class AddNoteModalComponent implements OnInit, OnDestroy {
       }
       else {
         this.isEdit = false;
-        this.note = { title: '', content: '' };
+        this.note = { id: 0, title: '', content: '' };
       }
       this.openModal();
     })
@@ -50,7 +50,7 @@ export class AddNoteModalComponent implements OnInit, OnDestroy {
   }
 
   updateNote() {
-    this.noteService.createNote(this.note).subscribe(newNote => {
+    this.noteService.updateNote(this.note.id, this.note).subscribe(() => {
       this.closeModal();
     });
   }

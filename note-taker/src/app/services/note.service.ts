@@ -27,15 +27,15 @@ export class NoteService {
   }
 
   createNote(note: Note): Observable<Note> {
-    return this.http.post<Note>(this.apiUrl, note);
+    return this.http.post<Note>(`${this.apiUrl}/save`, note);
   }
 
   updateNote(id: number, note: Note): Observable<Note> {
-    return this.http.put<Note>(`${this.apiUrl}?id=${id}`, note);
+    return this.http.put<Note>(`${this.apiUrl}/update?id=${id}`, note);
   }
 
   deleteNote(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}?id=${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/delete?id=${id}`);
   }
 }
 

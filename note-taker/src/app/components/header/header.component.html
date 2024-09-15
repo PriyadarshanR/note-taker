@@ -1,8 +1,9 @@
 <header>
-  <button *ngIf="showBackButton" (click)="goBack()" class="back-button">
+  <button class="back-btn" *ngIf="showBackButton" (click)="goBack()">
+    <img src="assets/icons/left-arrow.svg" alt="">
     Back
   </button>
-  <img *ngIf="!showBackButton" src="assets/icons/favicon-32x32.png" alt="">
+  <img *ngIf="!showBackButton" src="assets/icons/favicon-32x32.png" alt="" width="40px" height="40px">
   <h1>Note Taker</h1>
-  <button (click)="openModal()">Add Note</button>
+  <button *ngIf="!showBackButton" class="add-note-btn" (click)="openModal()">Add Note</button>
 </header>

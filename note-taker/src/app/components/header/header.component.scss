@@ -6,15 +6,68 @@ header {
   background-color: #000000;
   color: white;
 }
-.back-button {
-  background-color: #303030;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-}
 button {
   background-color: #303030;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
+}
+
+.add-note-btn {
+  background-color: #00bcd4; /* Bright cyan color */
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  border-radius: 25px; /* Rounded corners */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-note-btn:hover {
+  background-color: #00e5ff; /* Lighter cyan on hover */
+  transform: scale(1.05); /* Slight enlarge effect */
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.8); /* Glowing effect */
+}
+
+.add-note-btn:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.8); /* Glowing effect when focused */
+}
+
+.back-btn {
+  background-color: #ff5722; /* Bright contrasting color */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  padding-left: 30px;
+  font-size: 16px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+
+  img {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    right: 50px;
+  }
+}
+
+.back-btn i {
+  margin-right: 10px; /* Space between icon and text */
+}
+
+.back-btn:hover {
+  background-color: #ff7043; /* Lighter color on hover */
+  transform: scale(1.05);
+}
+
+.back-btn:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 87, 34, 0.8);
 }

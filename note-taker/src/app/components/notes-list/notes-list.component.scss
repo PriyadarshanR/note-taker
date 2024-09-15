@@ -12,6 +12,7 @@
     cursor: pointer;
     margin: 6px;
     position: relative; // Add this to set the container as a reference for the absolute icon
+    transition: transform 0.3s ease;
 
     .delete-icon {
       position: absolute;
@@ -27,4 +28,8 @@
       margin-top: 0;
     }
   }
+}
+
+.note-item:hover {
+  transform: scale(1.05);
 }

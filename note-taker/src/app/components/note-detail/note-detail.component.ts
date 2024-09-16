@@ -15,11 +15,13 @@ import { UserAction } from '../../models/model';
 export class NoteDetailComponent implements OnInit {
   note: any;
   confirmDeleteModalVisible = false;
+  sortActionPerformed !: string;
 
   constructor(private route: ActivatedRoute, private noteService: NoteService, private router: Router) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
+    this.sortActionPerformed = this.route.snapshot.paramMap.get('isSorted') ?? 'false';
 
     id && this.noteService.getNoteById(Number(id)).subscribe(data => {
       this.note = data;
@@ -39,7 +41,7 @@ export class NoteDetailComponent implements OnInit {
     if (event == UserAction.Primary) {
       const id = this.route.snapshot.paramMap.get('id');
       this.noteService.deleteNote(Number(id)).subscribe(() => {
-        this.router.navigate(['/notes'])
+        this.router.navigate(['/notes'], { queryParams: { isSorted: this.sortActionPerformed } })
       });
     } else {
       this.confirmDeleteModalVisible = false;

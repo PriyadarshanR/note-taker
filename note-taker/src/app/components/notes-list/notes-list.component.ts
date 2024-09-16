@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Note } from '../../models/note.model';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { Note, Priority } from '../../models/note.model';
 import { NoteService } from '../../services/note.service';
 import { map, Observable, tap } from 'rxjs';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ModalDialogComponent } from '../../modal-dialog/modal-dialog.component';
 import { UserAction } from '../../models/model';
@@ -16,27 +16,43 @@ import { UserAction } from '../../models/model';
 })
 export class NotesListComponent implements OnInit {
   notes$ !: Observable<Note[]>;
-  filteredNotes$ !: Observable<Note[]>;
+  modifiedNotes$ !: Observable<Note[]>;
   noteIdClickedOn !: number;
   confirmDeleteModalVisible = false;
+  sortActionPerformed = 'false';
 
-  constructor(private noteService: NoteService, private router: Router) { }
+  constructor(private noteService: NoteService, private router: Router, private acRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // noteListUpdated is a BehaviorSubject so this getAllNotes is initiated even at initialization of the component
+    // noteListUpdated is a BehaviorSubject so the getAllNotes is called even at initialization of the component
     this.noteService.noteListUpdated.subscribe(() => {
-      this.filteredNotes$ = this.notes$ = this.noteService.getAllNotes();
-    })
+      this.modifiedNotes$ = this.notes$ = this.noteService.getAllNotes();
+    });
 
-    this.noteService.searchByTitle.subscribe((searchString: String) => {
-      this.filteredNotes$ = this.notes$.pipe(map((notes: Note[]) => notes.filter((note: Note) =>
+    this.noteService.searchByTitle.subscribe((searchString: string) => {
+      this.modifiedNotes$ = this.notes$.pipe(map((notes: Note[]) => notes.filter((note: Note) =>
         note.title.toLowerCase().includes(searchString.toLowerCase())
       )))
-    })
+    });
+
+    this.noteService.sortNotesOrderBy.subscribe((sortAction: string) => {
+      this.sortActionPerformed = sortAction;
+      this.router.navigate(['/notes'], { queryParams: { isSorted: this.sortActionPerformed } })
+      this.performSorting(sortAction);
+    });
+
+    const sortAction = this.acRoute.snapshot.queryParamMap.get('isSorted');
+    if (sortAction) {
+      this.performSorting(sortAction);
+    }
   }
 
   viewNote(id: number) {
-    this.router.navigate(['/note/detail', id]);
+    this.router.navigate(['/note/detail', id], {
+      queryParams: {
+        isSorted: this.sortActionPerformed
+      }
+    });
   }
 
   onCloseIconClick(event: Event, noteId: number = 0) {
@@ -53,6 +69,28 @@ export class NotesListComponent implements OnInit {
       });
     } else {
       this.confirmDeleteModalVisible = false;
+    }
+  }
+
+  private performSorting(sortAction: string) {
+    switch (sortAction) {
+      case 'desc':
+        this.modifiedNotes$ = this.modifiedNotes$.pipe(
+          map((notes: Note[]) => notes.sort((a: Note, b: Note) => Priority.indexOf(b.priority) - Priority.indexOf(a.priority)
+          )
+          )
+        );
+        break;
+      case 'asc':
+        this.modifiedNotes$ = this.modifiedNotes$.pipe(
+          map((notes: Note[]) => notes.sort((a: Note, b: Note) => Priority.indexOf(a.priority) - Priority.indexOf(b.priority)
+          )
+          )
+        );
+        break;
+      case 'false':
+        this.modifiedNotes$ = this.notes$;
+        break;
     }
   }
 

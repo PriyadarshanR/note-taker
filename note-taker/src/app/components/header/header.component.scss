@@ -72,3 +72,50 @@ button {
   outline: none;
   box-shadow: 0 0 10px rgba(255, 87, 34, 0.8);
 }
+
+.search-container {
+  position: relative;
+}
+
+.search-box {
+  width: 315px;
+  margin: 6px;
+  background-color: #cccccc;
+}
+
+.options {
+  display: flex;
+}
+
+.search-container {
+  img {
+    position: absolute;
+    left: 315px;
+    bottom: 14px;
+    cursor: pointer;
+  }
+  input {
+    border-radius: 18px;
+    padding-left: 16px;
+  }
+}
+
+.sort-container,
+.filter-container {
+  display: flex;
+  border-radius: 18px;
+  justify-content: space-between;
+  align-items: center;
+  width: 70px;
+  margin: 6px;
+  padding: 4px;
+  background-color: #cccccc;
+  img {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+}
+
+img:hover {
+  transform: scale(1.4);
+}

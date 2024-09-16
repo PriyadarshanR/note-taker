@@ -31,8 +31,4 @@ export class AppComponent {
         else this.showBackButton = false
       });
   }
-
-  searchTitle(searchString: string) {
-    this.noteService.searchByTitle.next(searchString)
-  }
 }

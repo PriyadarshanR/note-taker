@@ -11,4 +11,5 @@ export const Priority = [
     'MEDIUM',
     'HIGH',
     'VERY_HIGH',
-    'CRITICAL']
+    'CRITICAL'
+]

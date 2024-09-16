@@ -6,3 +6,21 @@
   <h1>Note Taker</h1>
   <button class="add-note-btn" (click)="openModal()">Add Note</button>
 </header>
+@if(!showBackButton){
+<div class="options">
+  <div class="search-container">
+    <input class="search-box" type="text" (keydown.enter)="searchTitle(search.value)" placeholder="Search by title"
+      #search />
+    <img (click)="searchTitle(search.value)" src="assets/icons/search.svg" alt="" width="20px" height="20px">
+  </div>
+  <div class="sort-container">
+    <img (click)="sortByDescPriority()" src="assets/icons/sort-up.svg" alt="" width="20px" height="20px">
+    <img (click)="sortByAscPriority()" src="assets/icons/sort-down.svg" alt="" width="20px" height="20px">
+    <img (click)="removeSort()" src="assets/icons/remove-sort.svg" alt="" width="20px" height="20px">
+  </div>
+  <div class="filter-container">
+    <img (click)="searchTitle(search.value)" src="assets/icons/filter.svg" alt="" width="20px" height="20px">
+    <img (click)="searchTitle(search.value)" src="assets/icons/filter-slash.svg" alt="" width="20px" height="20px">
+  </div>
+</div>
+}

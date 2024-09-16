@@ -13,6 +13,7 @@ export class NoteService {
   //If NewNote or UpdateNote is to be performed
   addEditModal = new Subject<Note | null>();
   noteListUpdated = new BehaviorSubject(true);
+  sortNotesOrderBy = new Subject<string>();
 
   searchByTitle = new Subject<string>();
 

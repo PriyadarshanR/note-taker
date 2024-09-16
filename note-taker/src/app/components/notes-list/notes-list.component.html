@@ -1,14 +1,16 @@
 <div class="notes-list">
   @if(modifiedNotes$ | async; as notes){ @for(note of notes; track note.id){
   <div class="note-item" (click)="viewNote(note.id)">
-    <h3>{{ note.title }}</h3>
+    <div>
+      <h3>{{ note.title }}</h3>
+      <h5>Points: {{ priority.indexOf(note.priority) + 1 }}</h5>
+    </div>
     <img (click)="onCloseIconClick($event, note.id)" class="delete-icon" src="assets/icons/cancel.jpg" alt="delete note"
       width="500" height="300" />
     <p>
       {{ note.content | slice : 0 : 50 }}
       <span *ngIf="note.content.length > 50">...</span>
     </p>
-
   </div>
   } }
 </div>

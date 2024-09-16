@@ -4,6 +4,7 @@ import { NoteService } from '../../services/note.service';
 import { PrimaryActionDirective } from '../../directives/primary-action.directive';
 import { ModalDialogComponent } from '../../modal-dialog/modal-dialog.component';
 import { UserAction } from '../../models/model';
+import { Priority } from '../../models/note.model';
 
 @Component({
   selector: 'app-note-detail',
@@ -16,6 +17,7 @@ export class NoteDetailComponent implements OnInit {
   note: any;
   confirmDeleteModalVisible = false;
   sortActionPerformed !: string;
+  priority = Priority;
 
   constructor(private route: ActivatedRoute, private noteService: NoteService, private router: Router) { }
 

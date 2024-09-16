@@ -18,7 +18,7 @@ public class Note {
     @Column(nullable = false)
     private String title;
 
-    @Column(length = 1000)
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     @Enumerated(EnumType.ORDINAL) // or EnumType.ORDINAL based on preference

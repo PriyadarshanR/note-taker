@@ -8,9 +8,9 @@
     </div>
   </div>
   <div class="priority-points">
-    <h3>Priority:</h3>
+    <h3>Points:</h3>
     <span>
-      {{note.priority}}
+      {{ priority.indexOf(note.priority) + 1 }}
     </span>
   </div>
   <p class="content">{{ note.content }}</p>

@@ -20,6 +20,7 @@ export class NotesListComponent implements OnInit {
   noteIdClickedOn !: number;
   confirmDeleteModalVisible = false;
   sortActionPerformed = 'false';
+  priority = Priority;
 
   constructor(private noteService: NoteService, private router: Router, private acRoute: ActivatedRoute) { }
 

@@ -49,4 +49,12 @@ export class HeaderComponent implements OnInit {
   removeSort() {
     this.noteService.sortNotesOrderBy.next('false');
   }
+
+  addFilter() {
+
+  }
+
+  removeFilter() {
+
+  }
 }

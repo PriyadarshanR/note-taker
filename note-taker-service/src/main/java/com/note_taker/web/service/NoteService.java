@@ -38,6 +38,7 @@ public class NoteService {
         existingNote.setTitle(note.getTitle());
         existingNote.setContent(note.getContent());
         existingNote.setPriority(note.getPriority());
+        existingNote.setCategory(note.getCategory());
 
         return noteRepository.save(existingNote);
     }

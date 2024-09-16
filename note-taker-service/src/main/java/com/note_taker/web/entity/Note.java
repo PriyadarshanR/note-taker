@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,4 +24,6 @@ public class Note {
 
     @Enumerated(EnumType.ORDINAL) // or EnumType.ORDINAL based on preference
     private Priority priority;
+
+    private List<String> category;
 }

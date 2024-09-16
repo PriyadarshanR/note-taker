@@ -19,6 +19,8 @@ export class AddNoteModalComponent implements OnInit, OnDestroy {
   isEdit = false;
   destroySubject = new Subject<void>();
   priority = Priority;
+  showInputCategory = false;
+  newCategory: string = '';
 
 
   constructor(private noteService: NoteService) { }
@@ -31,7 +33,7 @@ export class AddNoteModalComponent implements OnInit, OnDestroy {
       }
       else {
         this.isEdit = false;
-        this.note = { id: 0, title: '', content: '', priority: 'LOW' };
+        this.note = { id: 0, title: '', content: '', priority: 'LOW', category: [] };
       }
       this.openModal();
     })
@@ -43,6 +45,7 @@ export class AddNoteModalComponent implements OnInit, OnDestroy {
 
   closeModal() {
     this.isVisible = false;
+    this.showInputCategory = false;
   }
 
   saveNote() {
@@ -56,6 +59,21 @@ export class AddNoteModalComponent implements OnInit, OnDestroy {
     this.noteService.updateNote(this.note.id, this.note).subscribe(() => {
       this.closeModal();
     });
+  }
+
+  toggleCategory() {
+    this.showInputCategory = !this.showInputCategory;
+  }
+
+  addCategory() {
+    if (this.newCategory && !this.note.category.includes(this.newCategory)) {
+      this.note.category.push(this.newCategory);
+      this.newCategory = '';
+    }
+  }
+
+  deleteValue(index: number) {
+    this.note.category.splice(index, 1);
   }
 
   ngOnDestroy() {

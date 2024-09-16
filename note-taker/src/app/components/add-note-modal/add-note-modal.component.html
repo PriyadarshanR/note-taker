@@ -7,11 +7,26 @@
         </h2>
       </div>
       <div class="edit-tags">
-        <button>
+        <button (click)="toggleCategory()">
           <img src="assets/icons/add-square.svg" alt="" height="25">
           <span>{{ isEdit ? "Update " : "Add " }} category</span>
         </button>
       </div>
+      @if(showInputCategory){
+      <div class="category">
+        <div class="add-new-category">
+          <input [(ngModel)]="newCategory" placeholder="Add new category" />
+          <button (click)="addCategory()">Add</button>
+        </div>
+        <div class="category-list">
+          <div class="categories" *ngFor="let value of note.category; let i = index">
+            {{ value }}
+            <img (click)="deleteValue(i)" class="delete-icon" src="assets/icons/cancel.jpg" alt="delete note"
+              height="25" />
+          </div>
+        </div>
+      </div>
+      }
     </div>
     <div>
       <form class="p-form">

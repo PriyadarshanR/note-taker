@@ -59,3 +59,56 @@ button {
   display: flex;
   align-items: center;
 }
+
+ul {
+  list-style-type: none;
+  padding: 0;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    font-size: x-small;
+
+    button {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}
+
+.delete-icon {
+  cursor: pointer;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+}
+
+.add-new-category {
+  display: flex;
+  input {
+    width: 100%;
+    border-radius: 30px;
+  }
+  button {
+    width: 48px;
+  }
+}
+
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.categories {
+  margin-left: 3px;
+  margin-top: 2px;
+  border-radius: 12px;
+  border: 2px solid;
+  padding-right: 3px;
+  padding-left: 3px;
+  background-color: whitesmoke;
+}

@@ -4,6 +4,7 @@ export interface Note {
     content: string;
     createdAt?: Date;
     priority: 'LOW';
+    category: string[]
 }
 
 export const Priority = [

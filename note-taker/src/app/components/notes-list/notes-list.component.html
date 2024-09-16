@@ -1,5 +1,6 @@
 <div class="notes-list">
-  @if(modifiedNotes$ | async; as notes){ @for(note of notes; track note.id){
+  @if(modifiedNotes$ | async; as notes){
+  @for(note of notes; track note.id){
   <div class="note-item" (click)="viewNote(note.id)">
     <div>
       <h3>{{ note.title }}</h3>
@@ -12,7 +13,8 @@
       <span *ngIf="note.content.length > 50">...</span>
     </p>
   </div>
-  } }
+  }
+  }
 </div>
 
 <app-modal-dialog [visible]="confirmDeleteModalVisible" primaryAction="Delete" secondaryAction="Cancel"

@@ -9,13 +9,13 @@
       <div class="edit-tags">
         <button (click)="toggleCategory()">
           <img src="assets/icons/add-square.svg" alt="" height="25">
-          <span>{{ isEdit ? "Update " : "Add " }} category</span>
+          <span>{{ isEdit ? "Update " : "Add " }} tag</span>
         </button>
       </div>
       @if(showInputCategory){
       <div class="category">
         <div class="add-new-category">
-          <input [(ngModel)]="newCategory" placeholder="Add new category" />
+          <input [(ngModel)]="newCategory" placeholder="Add new tag" />
           <button (click)="addCategory()">Add</button>
         </div>
         <div class="category-list">

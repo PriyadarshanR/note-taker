@@ -35,6 +35,12 @@ export class NotesListComponent implements OnInit {
     // noteListUpdated is a BehaviorSubject so the getAllNotes API is called even at initialization of the component
     this.noteService.noteListUpdated.subscribe(() => {
       this.modifiedNotes$ = this.notes$ = this.noteService.getAllNotes();
+
+      //Setting the available tags to filter from
+      this.notes$.subscribe((notes: Note[]) => {
+        //Removing duplicate tags
+        this.availableTags = [...new Set([...notes.flatMap((note: Note) => note.category)])];
+      })
     });
 
     this.noteService.searchByTitle.subscribe((searchString: string) => {
@@ -56,12 +62,6 @@ export class NotesListComponent implements OnInit {
       this.sortActionPerformed = sortAction;
       this.performSorting(sortAction);
     }
-
-    //Setting the available tags to filter from
-    this.notes$.subscribe((notes: Note[]) => {
-      //Removing duplicate tags
-      this.availableTags = [...new Set([...notes.flatMap((note: Note) => note.category)])];
-    })
 
     this.noteService.filterNotesBy.subscribe((filterBy: string[]) => {
       this.filterBy = filterBy;

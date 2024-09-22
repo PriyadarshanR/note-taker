@@ -79,7 +79,7 @@ export class NotesListComponent implements OnInit {
       }
     })
 
-    if (history.state.filterBy && (history.state.selectedFilterByPoint || history.state.selectedFilterByTag)) {
+    if (history.state.filterBy.length > 0 && (history.state.selectedFilterByPoint.length > 0 || history.state.selectedFilterByTag.length > 0)) {
       this.filterBy = history.state.filterBy;
       this.selectedFilterByPoint = history.state.selectedFilterByPoint ?? [];
       this.selectedFilterByTag = history.state.selectedFilterByTag ?? [];

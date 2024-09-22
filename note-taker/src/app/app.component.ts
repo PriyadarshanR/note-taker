@@ -19,13 +19,11 @@ import { NoteService } from './services/note.service';
 export class AppComponent {
   title = 'note-taker';
   showBackButton = false;
-  // @ViewChild('AddNoteModalComponent') modalRef !: AddNoteModalComponent
 
   constructor(private router: Router, private noteService: NoteService) {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(event => {
-        // console.log(event.url)
         if (event.url.includes('note/detail'))
           this.showBackButton = true
         else this.showBackButton = false

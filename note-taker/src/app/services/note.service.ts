@@ -14,6 +14,7 @@ export class NoteService {
   addEditModal = new Subject<Note | null>();
   noteListUpdated = new BehaviorSubject(true);
   sortNotesOrderBy = new Subject<string>();
+  filterNotesBy = new Subject<string[]>();
 
   searchByTitle = new Subject<string>();
 

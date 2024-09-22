@@ -21,3 +21,32 @@
   header="Delete Note" (onActionClicked)="onUserAction($event)">
   Do you want to delete the note?
 </app-modal-dialog>
+
+@if(showFilterByPointsPopUp || showFilterByTagPopUp){
+<div class="filter">
+  <div class="container">
+    <div class="filter-point" *ngIf="showFilterByPointsPopUp">
+      <p style="font-weight: bold;">Filter By Priority Points</p>
+      @for(point of [0,1,2,3,4]; track point){
+      <label class="filter-label" [for]="'label'+point">
+        <input (change)="addFilterByPoint($event)" [checked]="selectedFilterByPoint.includes(point)" type="checkbox"
+          [id]="'label'+point" [value]="point">{{point+1}}
+      </label>
+      }
+    </div>
+    <div class="filter-tag" *ngIf="showFilterByTagPopUp">
+      <p style="font-weight: bold;">Filter By Tags</p>
+      @for(tag of availableTags; track tag){
+      <label class="filter-label" [for]="tag">
+        <input (change)="addFilterByTag($event)" [checked]="selectedFilterByTag.includes(tag)" type="checkbox"
+          [id]="tag" [value]="tag">{{tag}}
+      </label>
+      }
+    </div>
+    <div class="action" style="display: block;">
+      <button (click)="removeAllFilter()">Cancel</button>
+      <button (click)="applyFilter()" appPrimaryAction>Apply</button>
+    </div>
+  </div>
+</div>
+}

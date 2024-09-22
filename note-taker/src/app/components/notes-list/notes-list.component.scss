@@ -11,7 +11,7 @@
     max-width: 300px;
     cursor: pointer;
     margin: 6px;
-    position: relative; // Add this to set the container as a reference for the absolute icon
+    position: relative;
     transition: transform 0.3s ease;
 
     .delete-icon {
@@ -32,4 +32,40 @@
 
 .note-item:hover {
   transform: scale(1.05);
+}
+
+.filter {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.container {
+  // display: flex;
+  background-color: lightblue;
+  padding: 1rem;
+  border-radius: 10px;
+  max-height: 70%;
+  max-width: 450px;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.action {
+  button {
+    margin-left: 4px;
+  }
+}
+
+.filter-label {
+  display: flex;
+  margin-bottom: 4px;
+  width: fit-content;
 }

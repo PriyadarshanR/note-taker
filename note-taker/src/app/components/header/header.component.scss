@@ -14,7 +14,7 @@ button {
 }
 
 .add-note-btn {
-  background-color: #00bcd4; // cyan color
+  background-color: #00bcd4;
   border: none;
   // padding: 12px 20px;
   font-size: 16px;
@@ -26,9 +26,9 @@ button {
 }
 
 .add-note-btn:hover {
-  background-color: #00e5ff; /* Lighter cyan on hover */
-  transform: scale(1.05); /* Slight enlarge effect */
-  box-shadow: 0 0 10px rgba(0, 229, 255, 0.8); /* Glowing effect */
+  background-color: #00e5ff;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
 }
 
 .add-note-btn:focus {
@@ -114,8 +114,47 @@ button {
     cursor: pointer;
     transition: all 0.3s ease;
   }
+  img:hover {
+    transform: scale(1.4);
+  }
 }
 
-img:hover {
-  transform: scale(1.4);
+.filter-container {
+  position: relative;
+  .filter-pop-up {
+    width: 250px;
+    height: 180px;
+    background-color: lightgray;
+    z-index: 1;
+    position: absolute;
+    top: 32px;
+    left: 20px;
+    border-radius: 8px;
+  }
+}
+
+.filter-by {
+  label {
+    display: flex;
+    align-items: baseline;
+  }
+  input {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.filter-pop-up-contents {
+  padding: 12px;
+  position: relative;
+}
+
+.filter-action {
+  position: absolute;
+  right: 6px;
+  bottom: -2px;
+  button {
+    margin-left: 4px;
+    width: 74px;
+  }
 }

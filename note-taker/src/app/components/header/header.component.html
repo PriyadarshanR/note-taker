@@ -9,8 +9,8 @@
 @if(!showBackButton){
 <div class="options">
   <div class="search-container">
-    <input class="search-box" type="text" (keydown.enter)="searchTitle(search.value)" placeholder="Search by title"
-      #search />
+    <input class="search-box" id="search" type="text" (keydown.enter)="searchTitle(search.value)"
+      placeholder="Search by title" #search />
     <img (click)="searchTitle(search.value)" src="assets/icons/search.svg" alt="" width="20px" height="20px">
   </div>
   <div class="sort-container">
@@ -21,6 +21,29 @@
   <div class="filter-container">
     <img (click)="addFilter()" src="assets/icons/filter.svg" alt="" width="20px" height="20px">
     <img (click)="removeFilter()" src="assets/icons/filter-slash.svg" alt="" width="20px" height="20px">
+    @if(showFilterOptions){
+    <div class="filter-pop-up">
+      <div class="filter-pop-up-contents">
+        <p style="font-weight: bold;">Filter By</p>
+        <div class="filter-by">
+          <label for="points">
+            <input type="checkbox" #points name="points" id="points" (change)="changeFilterOptions($event)"
+              value="filterByPoints" [checked]="selectedFilterOptions.includes(points.value)">
+            Points
+          </label>
+          <label for="tag">
+            <input type="checkbox" #tag name="tag" id="tag" (change)="changeFilterOptions($event)" value="filterByTag"
+              [checked]="selectedFilterOptions.includes(tag.value)">
+            Tag
+          </label>
+        </div>
+        <div class="filter-action">
+          <button (click)="showFilterOptions = false">Cancel</button>
+          <button (click)="applyFilter()">Apply</button>
+        </div>
+      </div>
+    </div>
+    }
   </div>
 </div>
 }

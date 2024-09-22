@@ -57,6 +57,7 @@ export class AddNoteModalComponent implements OnInit, OnDestroy {
 
   updateNote() {
     this.noteService.updateNote(this.note.id, this.note).subscribe(() => {
+      this.noteService.noteListUpdated.next(true);
       this.closeModal();
     });
   }
@@ -66,8 +67,8 @@ export class AddNoteModalComponent implements OnInit, OnDestroy {
   }
 
   addCategory() {
-    if (this.newCategory && !this.note.category.includes(this.newCategory)) {
-      this.note.category.push(this.newCategory);
+    if (this.newCategory && !this.note.category.includes(this.newCategory.toLowerCase())) {
+      this.note.category.push(this.newCategory.toLowerCase());
       this.newCategory = '';
     }
   }

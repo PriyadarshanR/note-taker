@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { AddNoteModalComponent } from '../add-note-modal/add-note-modal.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Note } from '../../models/note.model';
 import { NoteService } from '../../services/note.service';
@@ -13,25 +13,23 @@ import { NoteService } from '../../services/note.service';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit {
-  @ViewChild('addNoteModal') addNoteModal!: AddNoteModalComponent;
   @Input() showBackButton = false;
-  sortActionPerformed!: string;
+  showFilterOptions = false;
+  selectedFilterOptions: string[] = [];
+  navigationState: NavigationExtras | undefined;
 
 
   constructor(private router: Router, private noteService: NoteService) { }
 
-  ngOnInit(): void {
-    this.noteService.sortNotesOrderBy.subscribe((sortAction: string) => {
-      this.sortActionPerformed = sortAction;
-    })
-  }
+  ngOnInit(): void { }
 
   openModal() {
     this.noteService.addEditModal.next(null);
   }
 
   goBack() {
-    this.router.navigate(['/notes'], { queryParams: { isSorted: this.sortActionPerformed } });  // Navigate back to the home page (list of notes)
+    // sending state to hold the state of the application after applying filter
+    this.router.navigate(['/notes'], { queryParamsHandling: 'preserve', state: history.state });
   }
 
   searchTitle(searchString: string) {
@@ -51,10 +49,29 @@ export class HeaderComponent implements OnInit {
   }
 
   addFilter() {
-
+    // this.showFilterOptions = !this.showFilterOptions;
+    this.showFilterOptions = true;
   }
 
   removeFilter() {
+    this.showFilterOptions = false;
+    //Better way to empty arrays
+    this.selectedFilterOptions.length = 0;
+    this.noteService.filterNotesBy.next(this.selectedFilterOptions);
+  }
 
+  changeFilterOptions(event: any) {
+    event.target.checked && this.selectedFilterOptions.push(event.target.value);
+    if (!event.target.checked) {
+      this.selectedFilterOptions = this.selectedFilterOptions.filter((fOption: string) => {
+        //removing unchecked boxes
+        return event.target.value !== fOption
+      })
+    }
+  }
+
+  applyFilter() {
+    this.noteService.filterNotesBy.next(this.selectedFilterOptions);
+    this.showFilterOptions = false;
   }
 }

@@ -15,7 +15,9 @@
       @if(showInputCategory){
       <div class="category">
         <div class="add-new-category">
-          <input [(ngModel)]="newCategory" placeholder="Add new tag" />
+          <!-- preventing user from entering space in tags -->
+          <input (keydown.enter)="addCategory()" (keydown.space)="$event.preventDefault()" [(ngModel)]="newCategory"
+            placeholder="Add new tag" />
           <button (click)="addCategory()">Add</button>
         </div>
         <div class="category-list">
